@@ -1,12 +1,19 @@
 import './App.css';
 import {useState} from 'react';
 import Axios from 'axios';
+import Modal from 'react-bootstrap/Modal';
+import Button from 'react-bootstrap/Button';
 
 function App() {
   const [name, setName] = useState("");
   const [text, setText] = useState("");
 
   const [databaseList, setDatabaseList] = useState([]);
+
+  // const [show, setShow] = useState(false);
+
+  // const handleClose = () => setShow(false);
+  // const handleShow = () => setShow(true);
 
   const addEntry = () => {
     Axios.post('http://localhost:3006/create', {
@@ -28,6 +35,11 @@ function App() {
     });
   };
 
+  // const handleClick = () => {
+  //   addEntry();
+  //   handleShow();
+  
+
   return (
     <div className="App">
       <div className="information">
@@ -43,7 +55,11 @@ function App() {
          onChange={(event) => {
           setText(event.target.value);
           }}/>
-        <button onClick={addEntry}>Add Data</button>
+          <div className="modal-button"> 
+            <button  onClick={addEntry}>
+              Add Data
+            </button>
+          </div>
       </div>
       <div className="Database">
         <button onClick={getDataBase}>Show Database</button><br></br>
