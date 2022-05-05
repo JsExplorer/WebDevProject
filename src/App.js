@@ -1,19 +1,13 @@
 import './App.css';
 import {useState} from 'react';
 import Axios from 'axios';
-import Modal from 'react-bootstrap/Modal';
-import Button from 'react-bootstrap/Button';
+import './components/Modal.css';
 
 function App() {
   const [name, setName] = useState("");
   const [text, setText] = useState("");
 
   const [databaseList, setDatabaseList] = useState([]);
-
-  // const [show, setShow] = useState(false);
-
-  // const handleClose = () => setShow(false);
-  // const handleShow = () => setShow(true);
 
   const addEntry = () => {
     Axios.post('http://localhost:3006/create', {
@@ -35,10 +29,22 @@ function App() {
     });
   };
 
-  // const handleClick = () => {
-  //   addEntry();
-  //   handleShow();
-  
+  const [modal, setModal] = useState(false);
+
+  const toggleModal = () => {
+    setModal(!modal);
+  };
+
+  if(modal) {
+    document.body.classList.add('active-modal')
+  } else {
+    document.body.classList.remove('active-modal')
+  }
+
+  const handleClick = () => {
+    addEntry();
+    toggleModal();
+  }
 
   return (
     <div className="App">
@@ -56,9 +62,24 @@ function App() {
           setText(event.target.value);
           }}/>
           <div className="modal-button"> 
-            <button  onClick={addEntry}>
+            <button  onClick={handleClick} className="btn-modal">
               Add Data
             </button>
+                      {modal && (
+                      <div className="modal">
+                        <div onClick={toggleModal} className="overlay"></div>
+                        <div className="modal-content">
+                          <h2>Text inserted to database:</h2>
+                          <p>
+                            <h3>Name: {name}</h3>
+                            <h3>Text: {text}</h3>
+                          </p>
+                          <button className="close-modal" onClick={toggleModal}>
+                            CLOSE
+                          </button>
+                        </div>
+                      </div>
+                    )}
           </div>
       </div>
       <div className="Database">
