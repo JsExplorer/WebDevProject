@@ -27,11 +27,13 @@ body.active-modal {
     top: 40%;
     left: 50%;
     transform: translate(-50%, -50%);
-    line-height: 1.4;
-    background: #f1f1f1;
+    line-height: 2;
+    background: cornflowerblue;
     padding: 14px 28px;
     max-width: 600px;
-    min-width: 300px;
+    min-width: 500px;
+    height: 200px;
+    border: 2px solid black;
 }
 
 .close-modal {

@@ -69,7 +69,7 @@ function App() {
                       <div className="modal">
                         <div onClick={toggleModal} className="overlay"></div>
                         <div className="modal-content">
-                          <h2>Text inserted to database:</h2>
+                          <h2>Data inserted to database:</h2>
                           <p>
                             <h3>Name: {name}</h3>
                             <h3>Text: {text}</h3>
